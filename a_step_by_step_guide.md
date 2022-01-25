@@ -28,3 +28,8 @@ You should be able to **identify enough components** that are needed to solve th
   - how to **store the data so that it's optimized** for scanning the latest tweets ?
   - how much and at which layer should **we introduce cache** ?
   - **which components need better load balancing** ?
+
+## 7. Identifying and resolving bottlenecks
+... and discuss different approaches to mitigate them. For example:
+
+
