@@ -17,5 +17,14 @@ Defining the data model clarify **how data will flow between different system co
 Candidate should **identify various system entities**. For tweet-like service, some entities are: User, Tweet, UserFollow, and FavoriteTweets.
 
 ## 5. High-level design
+Draw a block diagram with 5~6 boxes **representing the core components** of the system.  
+You should be able to **identify enough components** that are needed to solve the actual problem **from end-to-end**.
 
-
+## 6. Detailed design
+- Dive deep into **2~3 major components**. The interviewer's **feedback should guide us what parts of the system** need further discussion.
+- We should present different approaches, **with their pros and cons**, and explain why we prefer one approach over the other. The important things is to consider tradeoffs between different options while **keeping system constraints in mind**. The details to consider are like:
+  - partition data to distribute it to multiple databases **vs.** store all data of a user on the same database ?
+  - how to handle **hot users** (who tweets a lot)?
+  - how to **store the data so that it's optimized** for scanning the latest tweets ?
+  - how much and at which layer should **we introduce cache** ?
+  - **which components need better load balancing** ?
