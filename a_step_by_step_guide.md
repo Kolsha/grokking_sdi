@@ -31,5 +31,7 @@ You should be able to **identify enough components** that are needed to solve th
 
 ## 7. Identifying and resolving bottlenecks
 ... and discuss different approaches to mitigate them. For example:
-
+- is there single **point of failure** in our system ?
+- enough **replicas of the data** so that we can still serve our users if we lose a few servers ?
+- how are we **monitoring the performance** of our service ? Do we **get alerts** whenever critical components fail or their performance degrades ?
 
