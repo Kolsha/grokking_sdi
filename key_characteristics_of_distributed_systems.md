@@ -17,7 +17,16 @@ Many reasons, such as increased data volume or increased amount of transactions.
   - Vertical scale: add more resources(CPU, RAM, Storgae, etc.) to the same server.
 
 ## 2. Reliability
+**Reliability is the probability a system will fail in a given period.**
 
+If **a distributed system keeps delivering its services even when one of its software or hardware components fail,**  
+this system is consider reliable.
+
+- **Why does a system need to be reliable ?**
+Avoid single point of failure.
+
+- **How to be reliable ?**  
+**Through redundancy of both the software components and data(i.e. another server that has the exact same replica of the data).** If there is any failing machine, this failing machine will be replaced by another healthy one, **ensuring the completion** of the requested task.
 
 ## 3. Availability
 ## 4. Efficiency
