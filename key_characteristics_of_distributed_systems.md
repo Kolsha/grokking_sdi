@@ -22,7 +22,7 @@ Many reasons, such as increased data volume or increased amount of transactions.
 If **a distributed system keeps delivering its services even when one of its software or hardware components fail,**  
 this system is consider reliable.
 
-- **Why does a system need to be reliable ?**
+- **Why does a system need to be reliable ?**  
 Avoid single point of failure.
 
 - **How to be reliable ?**  
