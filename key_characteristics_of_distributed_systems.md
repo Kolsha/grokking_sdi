@@ -29,5 +29,14 @@ Avoid single point of failure.
 **Through redundancy of both the software components and data(i.e. another server that has the exact same replica of the data).** If there is any failing machine, this failing machine will be replaced by another healthy one, **ensuring the completion** of the requested task.
 
 ## 3. Availability
+**Availability is the _time_ when system _remains_ operational to perform its required function.** It's simple measure of _the percentage of_ time that a system, service, or a machine remains operational.
+
+- **Availablity vs. Reliability**  
+Reliability is availability over time, considering the full range of possible real-world conditions that can occur.  
+Reliable means available.  
+Available does not mean reliable.  
+You can achieve high availability and low reliability by minimizing _repair time and maintainence time_.
+
+
 ## 4. Efficiency
 ## 5. Serviceability or Manageability
