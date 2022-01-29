@@ -37,6 +37,20 @@ Reliable means available.
 Available does not mean reliable.  
 You can achieve high availability and low reliability by minimizing _repair time and maintainence time_.
 
-
 ## 4. Efficiency
+- **How to measure the efficiency of a distributed system ?**  
+2 standard measures:
+  1. _response time (or latency)_ that denotes the delay to obtain the first item;
+  2. _throughput (or bandwidth)_ which denotes the number of items delivered in a given time unit (e.g. a second).
+
+- **How to characterize the complexity of an operation ?**  
+Characterize it as a function of  
+  - the number of messages sent by the nodes of the system; Or
+  - size of message_s_ representing the volume of data exchanges.  
+
+This analysis is over-simplistic, because it ignores the impact of many aspects, including the _network topology (i.e. how various nodes, devices and connections are physically arranged in your network in relation to each other), the network load, the possible heterogeneity of the software and hardware components_ involved in data processing and routing, etc.
+
 ## 5. Serviceability or Manageability
+Serviceability or Manageability is the simplicity and speed with which a system can be repaired or maintained.
+
+- **The lower serviceability/manageability the system is, the lower its availability is.**
