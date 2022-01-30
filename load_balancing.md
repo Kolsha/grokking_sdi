@@ -32,9 +32,9 @@ We can try to balance the load at each layer of the system, to utilize full scal
 1. Ensure that the server it chooses is actually responding appropriately to requests.
    - Health Checks: "health checks" regularly attempt to connect to backend servers to check if a server is listening or not. If a server fails a health check, it's automatically removed from the **pool**. Traffic will not be forwarded to this server, until it responds to the health checks again (thus it's added into the pool again).
 2. Use a pre-configured algorithm to select one from the set of healthy servers.
-   - least connection method: useful when there're a large number of persistent client connections;
-   - least response time method
-   - least bandwidth method: selects the server that is currently serving the least amount of traffic measured in Mbps.
-   - round robin method: take turns. useful when servers are of equal specifications and there are not many persistent connections.
-   - weight round robin method: if a server has large processing capacity, give it higher weight.
-   - IP Hashing: IP address of client --> hash of IP address --> map this hash to a server
+   - **least connection method**: useful when there're a large number of persistent client connections;
+   - **least response time method**
+   - **least bandwidth method**: selects the server that is currently serving the least amount of traffic measured in Mbps.
+   - **round robin method**: take turns. useful when servers are of equal specifications and there are not many persistent connections.
+   - **weight round robin method**: if a server has large processing capacity, give it higher weight.
+   - **IP Hashing**: IP address of client --> hash of IP address --> map this hash to a server
