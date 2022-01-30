@@ -21,3 +21,10 @@ We can try to balance the load at each layer of the system, to utilize full scal
   - _**Application server serves business logic to client applications throughout various protocols**_. In most cases, the application server exposes business logic through API.
     - Application server can provide service to a web server. In this scenario, web server is the client.
     - Application server is reusable.
+
+**3. Benefits of Load Balancing**  
+- users experience faster,  uninterrupted service.
+- service providers experience less downtime and higher output.
+- system administrators experience fewer failed or stressed components.
+- smart load balancers provide predictive analytics that determine traffic bottlenecks before they happen.
+
