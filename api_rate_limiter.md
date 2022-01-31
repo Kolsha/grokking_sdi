@@ -32,4 +32,28 @@
 - Rolling Window Algorithm:
   - definition of the time window: from the fraction of the time at which the request is made + the time window length. For example, if a message is sent at 300th millisecond of a second. The time window is from _the 300th millisecond of that second_ to _the 300th millisecond of next second._
 
-****
+**6. High level design**  
+The key: **web server** first asks the Rate Limiter to decide if it will be throttled or served. If it can be served, **the web server** will pass the request to API server.
+
+**7. Detailed Design: Basic System Design and Algorithm**
+```
+# Each user --> 
+#              count (representing how many requests the user has made within a time window), and
+#              timestamp (**at which we started counting** the requests)
+ {UserID : (count, startTime)}
+ 
+ for request from a user:
+    if user in hash_table:
+        count, startTime = hash_table[user]
+        currentTime = getTimeStamp()
+        if currentTime - startTime >= time_window: # such as 1 min
+            count = 1
+            startTime = currentTime
+        else:
+            if count >= threshold: # such as 3
+                reject the request
+            else:
+                count += 1
+                allw the request
+            
+```
