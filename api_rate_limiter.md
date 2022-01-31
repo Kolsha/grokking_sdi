@@ -36,8 +36,10 @@
 
 **6. High level design**  
 The key: **web server** first asks the Rate Limiter to decide if it will be throttled or served. If it can be served, **the web server** will pass the request to API server.
+![rate_limiter](https://user-images.githubusercontent.com/26174882/151849772-5be8dcae-c2ff-4d3a-961d-561c0f712cfa.png)
 
 **7. Detailed Design: Basic System Design and Algorithm**
+
 ```
 # Each user --> 
 #              count (representing how many requests the user has made within a time window), and
@@ -73,7 +75,7 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
     - Memcached: a general-purposed distributed memory-caching system. It caches data and objects in RAM. Memcached's **APIs provide a very large hash table distributed across multiple machines**.
 
 **Back-of-the-envelop estimation: How much storage do we need to store all of the user data ?**  
-(8 + 2 + 2 + 20 + 4) bytes * 1,000,000 = 36,000 KB = 36MB
+(8 + 2 + 2 + 20 + 4) bytes * 1,000,000 = 36,000 KB = 36MB for 1 million user
 - UserID: 8 Bytes (1 byte per char);
 - Count: 2 Bytes;
 - StartTime: 2 Bytes;
@@ -81,3 +83,25 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
 - For each user, we need 4 byte **lock** to resolve atomicity problem.
 - Assume 1 million users.
 
+**Sliding Window Algorithm**
+```
+# for every user, a Redis Sorted Set is used to store timestamps of each request sent by this user
+
+for every request sent by a user:
+    sortedTimeStamp = getSortedSetForUser(userID)
+    remove timestamps, for which timestamp - currentTimeStamp > time_window, from the sortedTimeStamp
+    if size of sortedTimeStamp > threshold:
+        reject this request
+    else:
+        add currentTimeStamp into the sortedSet
+        accept this request
+```
+
+**How much storage will we need if sliding window algorithm is used?**
+8 + (4 + 20) * 500 + 20 = 12KB per user
+12 KB * 1,000,000 = 12,000MB = 12GB for 1 million users
+- UserID: 8 bytes
+- Every timestamp: 4 bytes
+- Threshold (i.e. a rate limiting of 500 requests per hour): 500 requests per hour
+- 20 bytes overhead for Redis Sorted Set
+- 20 bytes overhead for hash table
