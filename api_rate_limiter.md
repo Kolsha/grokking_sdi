@@ -70,7 +70,7 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
     - For Redis (an **in-memory** data structure store, used as a distributed, in-memory **key-value database**), use **Redis Lock** for the duration of read-and-then-write algorithm.
     - Memcached: a general-purposed distributed memory-caching system. It caches data and objects in RAM. Memcached's **APIs provide a very large hash table distributed across multiple machines**.
 
-**Back-of-the-envelop estimation: How much storage do we nned to store all of the user data ?**  
+**Back-of-the-envelop estimation: How much storage do we need to store all of the user data ?**  
 (8 + 2 + 2 + 20 + 4) bytes * 1,000,000 = 36,000 KB = 36MB
 - UserID: 8 Bytes (1 byte per char);
 - Count: 2 Bytes;
