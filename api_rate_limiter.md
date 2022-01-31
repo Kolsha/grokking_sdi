@@ -21,7 +21,7 @@
   - highly available.
   - do not introduce substantial latencies.
 
-**4. Throttling can be defined in application level and/or API level**
+**4. Throttling can be defined in application level and/or API level**  
 3 types of throttling:
 - hard throttling;
 - soft throttling;
