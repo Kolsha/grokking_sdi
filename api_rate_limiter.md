@@ -18,6 +18,8 @@
 - Functional Requirements:
   - **The user should get an error message _"HTTP status 429 - Too many requests"_** whenever the defined threshold is crossed within a single server or across a combination of servers.
 - Non-Functional Requirements
+  - highly available.
+  - do not introduce substantial latencies.
 
 **4. Throttling can be defined in application level and/or API level**
 3 types of throttling:
