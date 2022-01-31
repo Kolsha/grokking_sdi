@@ -40,7 +40,7 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
 # Each user --> 
 #              count (representing how many requests the user has made within a time window), and
 #              timestamp (**at which we started counting** the requests)
- {UserID : (count, startTime)}
+# {UserID : (count, startTime)}
  
  for request from a user:
     if user in hash_table:
@@ -54,6 +54,28 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
                 reject the request
             else:
                 count += 1
-                allw the request
-            
+                allow the request
+    else:
+        startTime = getTimeStamp()
+        count = 1
+        hash_table[userID] = (count, startTime)
+        allow the request
 ```
+
+**Dive deep into details: What are some of the problems with the algorithm above ?**  
+- This is a fixed window algorithm.
+  - **How to fix it?** Use Sliding window algorithm.
+- In a distributed environment, "Read-and-then-write" behavior can create a **race condition** (i.e. a computer program depends on the sequence or timing of the program's processes/threads).
+  - **How to fix it?**
+    - For Redis (an **in-memory** data structure store, used as a distributed, in-memory **key-value database**), use **Redis Lock** for the duration of read-and-then-write algorithm.
+    - Memcached: a general-purposed distributed memory-caching system. It caches data and objects in RAM. Memcached's **APIs provide a very large hash table distributed across multiple machines**.
+
+**Back-of-the-envelop estimation: How much storage do we nned to store all of the user data ?**
+(8 + 2 + 2 + 20 + 4) bytes * 1,000,000 = 36,000 KB = 36MB
+- UserID: 8 Bytes (1 byte per char);
+- Count: 2 Bytes;
+- StartTime: 2 Bytes;
+- **Hash-table** has an overhead of 20 bytes for each record.
+- For each user, we need 4 byte **lock** to resolve atomicity problem.
+- Assume 1 million users.
+
