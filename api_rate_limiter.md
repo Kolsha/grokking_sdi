@@ -1,1 +1,35 @@
+## API Rate Limiter
 
+**1. What is a Rate Limiter ?**
+- **Problem:** a service, which can only serve a limited number of requests per second, is receiving a huge number of requests.
+- **Goal:** To solve this problem, we need some kind of throttling or rate limiting mechanism that would allow only a certain number of requests so our service can respond to all of them.
+- **Rate Limiter:** limits the number of events **an entity (user, device, IP, etc.)** can perform **in a particular time window**.
+- **API Rate Limiter:** Limit the number of requests an entity can send to an API(or API server) within a time window.
+
+**2. Benefits of Rate Limiter ?**
+- Prevents services from
+  - **Denial-of-service(DOS)** attacks;
+  - brute-force password attempts, brute-force credit card transactions, etc;
+  - misbehaving clients/scripts sending a lot of lower-priority requests, such as requests for analytics;
+  - bad design practices(sloppy development tactics) such as requesting the same information over and over again;
+- Create a revenue model based on rate limiting - the user has to buy higher limits.
+
+**3. Requirement clarification**
+- Functional Requirements:
+  - **The user should get an error message _"HTTP status 429 - Too many requests"_** whenever the defined threshold is crossed within a single server or across a combination of servers.
+- Non-Functional Requirements
+
+**4. Throttling can be defined in application level and/or API level**
+3 types of throttling:
+- hard throttling;
+- soft throttling;
+- elastic or dynamic throttling: if the system has some resources available, the # of requests can be > the threshold.
+
+**5. Algorithms used for Rate Limiting**
+- Fixed Window Algorithm: 
+  - definition of the time window: from the start of the **time-unit** to the end of **the time-unit**.  
+  - the time window is _**irrespective** of the time frame at which the API request has been made_.
+- Rolling Window Algorithm:
+  - definition of the time window: from the fraction of the time at which the request is made + the time window length. For example, if a message is sent at 300th millisecond of a second. The time window is from _the 300th millisecond of that second_ to _the 300th millisecond of next second._
+
+****
