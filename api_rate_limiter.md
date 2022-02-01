@@ -105,3 +105,11 @@ for every request sent by a user:
 - Threshold (i.e. a rate limiting of 500 requests per hour): 500 requests per hour
 - 20 bytes overhead for Redis Sorted Set
 - 20 bytes overhead for hash table
+
+**8. Should we rate limit by IP or by user ?**
+- cons of IP based rate limiting
+  - When multiple users share a single public IP like in an internet cafe or smartphone users that are using the same gateway, 1 bad user can cause throttling to other users.
+  - There are a huge number of IPv6 addresses available to a hacker from even one computer. This can make server run out of memory tracking IPv6 addresses.
+
+- cons of User based rate limiting
+  -  
