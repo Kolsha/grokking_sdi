@@ -126,7 +126,7 @@ for every request from a user:
 ```
 **Note**: use _RedisHash_ as data structure of hash table. Every key has to TTL (i.e. the key will expire after TTL).
 
-**How much storage will we need if sliding window with counters algorithm is used ?**
+**7. Data Sharding and Caching (TO DO)**
 
 **8. Should we rate limit by IP or by user ?**
 - cons of IP based rate limiting
