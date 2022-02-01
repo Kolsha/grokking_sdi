@@ -106,10 +106,32 @@ for every request sent by a user:
 - 20 bytes overhead for Redis Sorted Set
 - 20 bytes overhead for hash table
 
+**Sliding Window With Counters**
+A weighted count(i.e. counter) in previous window + the count(i.e. counter) in current window
+```
+for every request from a user:
+    current_unnormalized_timestamp = getCurrentUnNormalizedTimeStamp()
+    current_timestamp = getCurrentTimeStamp() # NORMALIZED! For example, it's normalized to minute.
+    prev_timestamp = current_timestamp - time_window
+    
+    weight = (current_unnormalized_timestamp - current_timestamp) / time_window
+    prev_count = hash_table[prev_timestamp]
+    curr_count = hash_table.get(current_timestamp, 0) + 1
+    
+    count = prev_count * weight + curr_count
+    if count <= threshold:
+        accept
+    else
+        reject
+```
+**Note**: use _RedisHash_ as data structure of hash table. Every key has to TTL (i.e. the key will expire after TTL).
+
+**How much storage will we need if sliding window with counters algorithm is used ?**
+
 **8. Should we rate limit by IP or by user ?**
 - cons of IP based rate limiting
   - When multiple users share a single public IP like in an internet cafe or smartphone users that are using the same gateway, 1 bad user can cause throttling to other users.
   - There are a huge number of IPv6 addresses available to a hacker from even one computer. This can make server run out of memory tracking IPv6 addresses.
 
 - cons of User based rate limiting
-  -  
+  -  Rate limiting can be done only after user authentication (Once authenticated, the user will be provided with a token which the user will pass with each request). Therefore, rate limiting cannot be applied to login_in API itself.
