@@ -43,7 +43,7 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
 ```
 # Each user --> 
 #              count (representing how many requests the user has made within a time window), and
-#              timestamp (at which we started counting the requests. It's NORMALIZED FOR EXAMPLE TO MINUTE !!!)
+#              timestamp (at which we started counting the requests. It's NORMALIZED, FOR EXAMPLE, TO MINUTE !!!)
 # {UserID : (count, startTime)}
  
  for request from a user:
