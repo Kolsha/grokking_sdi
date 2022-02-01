@@ -49,7 +49,7 @@ The key: **web server** first asks the Rate Limiter to decide if it will be thro
  for request from a user:
     if user in hash_table:
         count, startTime = hash_table[user]
-        currentTime = getTimeStamp()
+        currentTime = getTimeStamp() # It is normalized! For example, it's normalized to minute.
         if currentTime - startTime >= time_window: # such as 1 min
             count = 1
             startTime = currentTime
