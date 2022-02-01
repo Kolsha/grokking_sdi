@@ -106,7 +106,7 @@ for every request sent by a user:
 - 20 bytes overhead for Redis Sorted Set
 - 20 bytes overhead for hash table
 
-**Sliding Window With Counters**
+**Sliding Window With Counters**  
 A weighted count(i.e. counter) in previous window + the count(i.e. counter) in current window
 ```
 for every request from a user:
