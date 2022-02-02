@@ -63,7 +63,7 @@ Process of making multiple copies of data and storing them on different servers.
 
 **3. How to use Consistent Hashing for Data Replication ?**
 - Background Knowledge
-  - **replication factor N **: # of nodes the will receive the copy of the same data item.
+  - **replication factor N**: # of nodes the will receive the copy of the same data item.
   - **coordinator node**: when a data key is hashed and mapped into a range, the node which owns this range.
 - How ?
   - 1 coordinator node + (N - 1) successor nodes.
