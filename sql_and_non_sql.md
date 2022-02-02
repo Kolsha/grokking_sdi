@@ -21,8 +21,16 @@
   - **Durability**: data stores in **non-volatile memory**. 
 
 **When to use SQL database ?**
+- for many e-commerce and financial applications, use ACID-compliant SQL database.
+- your business is not experiencing massive growth and you're only working with data that is consistent.
 
 **When to use No-SQL database ?**
+- to store large volumes of data that often have little structure.
+- making the most of cloud computing and storage, _because cloud-based storage requires data to be spread across multiple servers to scale up_.
+- rapid development, because NoSQL
+  - doesn't need to be prepared ahead of time; and
+  - you can make _frequent_ updates to the data structure.
+
 
 **Redis**
 
