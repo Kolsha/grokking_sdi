@@ -14,6 +14,7 @@ Process of making multiple copies of data and storing them on different servers.
   - enhance availability;
   - enhance reliability;
   - defines how efficiently the system will be scaled and managed(better scalibility and serviceability/managebility)
+  - enhance durability (i.e. a system is considered durable if it does not lose the data that was successfully commited to it. In other words, durability guarantees against any data loss due to corruption or a _permanent_ component failure like a storage device or a server). 
 
 **2. How to use Consistent Hashing for Data Partitioning ?**
 - **What's the challenges when we try to distribute data across different servers ?**
@@ -54,4 +55,10 @@ Process of making multiple copies of data and storing them on different servers.
       - therefore, a (physical) node is responsible for many subranges (or tokens).  
       - Vnodes assigned to the same _physical_ node are **non-contiguous**.
   -  **heteregeneous**: some servers might hold more Vnodes than others.
+  -  **Advantages of Vnodes:**
+      - by dividing hash ranges into smaller ranges(i.e. Vnode), Vnode helps spread the load more evenly across physical nodes.
+      - speed up the rebalancing process after adding a new node. When a new node is added, it receives many Vnodes from existing nodes to maintain a balanced cluster.
+      - maintain a heterogeneous machines: assign a high number of Vnodes to **a powerful server**, and a low number of Vnodes to a **less powerful server**.
+      - by dividing hash ranges into smaller ranges(i.e. Vnode), it decreases the **possibility** of hotspots.
+
 **3. How to use Consistent Hashing for Data Replication ?**
