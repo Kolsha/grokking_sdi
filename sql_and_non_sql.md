@@ -33,14 +33,14 @@
 
 
 **Choose among Redis, Dynamo, Cassandra, Memcached or MongoDB ?**  
-Focus on Caching ?:
-  - **Memcached** is designed for caching. It keeps data in RAM. **It's great for caching small and static data**.
-  - **Redis** is excellent for caching.
+- Focus on Caching ?:
+    - **Memcached** is designed for caching. It keeps data in RAM. **It's great for caching small and static data**.
+    - **Redis** is excellent for caching.
 
-Focus on Data Recovery on server failure, multi data center deployment ?:
-  - **Cassandra**, because Cassandra offers great scalability, it can handle large amount of "write" request, and it can handle large amount of data.
+- Focus on Data Recovery on server failure, multi data center deployment ?:
+    - **Cassandra**, because Cassandra offers great scalability, it can handle large amount of "write" request, and it can handle large amount of data.
 
-Focus on Easy of use and Cloud Capabilities ?:
-  - **Dynamo**, because Dynamo relys on the mature cloud capabilities of AWS, and you can set up dynamoDB easily.
+- Focus on Easy of use and Cloud Capabilities ?:
+    - **Dynamo**, because Dynamo relys on the mature cloud capabilities of AWS, and you can set up dynamoDB easily.
 
 More reading is [here](https://devathon.com/blog/mongodb-vs-cassandra-vs-redis-vs-memcached-vs-dynamodb/).
