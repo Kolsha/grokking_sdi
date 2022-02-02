@@ -8,6 +8,17 @@
 |   | **ACID** compliant, thus better data reliability and safe guarantee of performing transactions.  | scarifice **ACID** for performance scalability, thus better scalability|
 
 **What's ACID ? Why is it important ?**
+- **Problem 1**: For a transaction which is composed of multiple steps, such as monetary transfer from bank account A to bank account B. If something goes wrong after the money is withdrawed from account A (such as power failures, errors or crashes), how to solve this problem ?
+  - **Atomicity**. The transaction is treated as **1 unit**. It either succeeds completely, or fails completely.
+
+- **Problem 2**: What if, a transaction (operation on database), corrupts the database, such as adding 1 new column in a relational database, or breaking the database constraints (such as no negative value is allowed) ?
+  - **Consistency**: Or correctness. **Consistency in database system** means that any transaction must change the data in an allowed ways. It must guarantee data integrity (i.e. the opposite of data corruption).
+
+- **Problem 3**: What if 2 transactions update one data item at the same time (i.e. race condition)?
+  - **Isolation**: concurrent execution of transactions leaves the database system in the same state that would have been obtained if these transactions were executed sequentially.
+
+- **Problem 4**: What if power outage happens on the database system ?
+  - **Durability**: data stores in **non-volatile memory**. 
 
 **When to use SQL database ?**
 
@@ -19,4 +30,4 @@
 
 **Cassandra**
 
-**Redis, Dynamo or Cassandra ?**
+**Choose among Redis, Dynamo or Cassandra ?**
