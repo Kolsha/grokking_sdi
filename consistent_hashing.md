@@ -50,8 +50,8 @@ Process of making multiple copies of data and storing them on different servers.
   -  hash range is divided into smaller ranges;
       - each of these subranges is considered as **Vnode(i.e. virtual node)**.  
       - therefore, Vnode is a **conceptual node**.
-  -  each node in the ring is assigned **several of these smaller ranges(i.e. subranges)**.
-      - therefore, a node is responsible for many subranges (or tokens).  
+  -  each (physical) node in the ring is assigned **several of these smaller ranges(i.e. subranges)**.
+      - therefore, a (physical) node is responsible for many subranges (or tokens).  
       - Vnodes assigned to the same _physical_ node are **non-contiguous**.
-
+  -  **heteregeneous**: some servers might hold more Vnodes than others.
 **3. How to use Consistent Hashing for Data Replication ?**
