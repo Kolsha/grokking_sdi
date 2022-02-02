@@ -29,13 +29,22 @@ Process of making multiple copies of data and storing them on different servers.
   - **benefits of consistent hashing**:
     - it can map data into physical nodes; and
     - **it ensures that only small set of keys(i.e. data keys) move when servers are added or removed.**
-  - **how does consistent hashing work ?**
+  - **how does _basic_ consistent hashing work ?**
     - stores data in a ring (conceptually);
     - **each node in the ring is assigned a range of data**;
       - hash_range / #_of_nodes = the hash_range assigned to a specific node
       - the ring -> smaller, predefined ranges.
-      - **Token**: the start of every range. Therefore, each node is assigned with a **token**.
+      - **token**: the start of every range. Therefore, each node is assigned with a **token**.
       - Apply MD5 hashing algorithm to the key (i.e. data key) --> the output determines within which range the data lies, thus on which node the data will be stored.
-    - when a node is added or removed from the ring, **only the next node is affected, because the next node becomes responsible for all the keys stored on the outgoing node**.  
+    - when a node is added or removed from the ring, **only the next node is affected, because the next node becomes responsible for all the keys stored on the outgoing node**.
+   - **What's the problem of this basic consistent hashing ?**
+      -  non-uniform data and load distribution;
+         - some node becomes hotspots (i.e. any server responsible for a huge partition of data can become a bottleneck for the system. A large share of data storage and retrieval requests will go to that node which can effectively bring the performance of the whole system down. Such loaded servers are hotspots).  
+      -  after adding or removing a node,
+         - we need to re-compute the tokens for every node.
+         - if we'd like to _rebalance and distribute_ the data to all other nodes after adding or remove a node, it's an expensive operation because a lot of data needs to be moved.
+      -  
+   - **Introduce Virtual Nodes into Consistent Hashing**
+   -  
 
 **3. How to use Consistent Hashing for Data Replication ?**
