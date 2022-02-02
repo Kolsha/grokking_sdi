@@ -29,5 +29,8 @@ Process of making multiple copies of data and storing them on different servers.
   - **benefits of consistent hashing**:
     - it can map data into physical nodes; and
     - **it ensures that only small set of keys(i.e. data keys) move when servers are added or removed.**
+  - **how does consistent hashing work ?**
+    - stores data in a ring (conceptually);
+    - **each node in the ring is assigned a range of data**;  
 
 **3. How to use Consistent Hashing for Data Replication ?**
