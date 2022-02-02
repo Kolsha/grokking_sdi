@@ -5,4 +5,4 @@
 4. [Load Balancing](load_balancing.md)
 5. [API Rate Limiter](api_rate_limiter.md)
 6. [Consistent Hashing for Data Partitioning and Data Replication](consistent_hashing.md)
-7. [SQL vs. NoSQL; Dynamo and Cassandra](sql_and_non_sql.md)
+7. [SQL vs. NoSQL; Dynamo, Cassandra and Redis](sql_and_non_sql.md)
