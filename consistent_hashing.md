@@ -16,16 +16,16 @@ Process of making multiple copies of data and storing them on different servers.
   - defines how efficiently the system will be scaled and managed(better scalibility and serviceability/managebility)
 
 **2. How to use Consistent Hashing for Data Partitioning ?**
-- _What's the challenges when we try to distribute data across different servers ?_
+- **What's the challenges when we try to distribute data across different servers ?**
   - Challenge 1: How do we know on which node a particular piece of data will be stored ?
   - Challenge 2: When we add or remove nodes, how do we know what data will be moved from existing nodes to the new nodes ?
   - Challenge 3: How can we minimize data movement when nodes join or leave ?
-- _A Naive Approach to do data partitioning_
+- **A Naive Approach to do data partitioning**
   - data key (For example, CA Sacramento 94203; WA Olympia 98501; NY Albany 12201. In this database table, the key is CA, WA and NY).
   - hash of the data_key
   - hash_of_the_data_key % (# of servers)
   - Big problem: if (# of servers) is changed, all existing mapping is broken. To get things working again, we have to remapping all the keys and move data based on the new server count. This is a complete mess.
-- _Consistent Hashing_
+- **Consistent Hashing**
   - **benefits of consistent hashing**:
     - it can map data into physical nodes; and
     - **it ensures that only small set of keys(i.e. data keys) move when servers are added or removed.**
