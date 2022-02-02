@@ -4,4 +4,4 @@
 3. [Key Characteristics of Distributed Systems](key_characteristics_of_distributed_systems.md)
 4. [Load Balancing](load_balancing.md)
 5. [API Rate Limiter](api_rate_limiter.md)
-6. [Consistent Hashing](consistent_hashing.md)
+6. [Consistent Hashing for Data Partitioning and Data Replication](consistent_hashing.md)
