@@ -20,7 +20,7 @@ Can be stored in memory or local disk (which is faster than going to network sto
 CDN can be used to store **static media**.
 
 **5. How does CDN work ?**  
-A request asks CDN for a static media --> CDN checks if the data is locally available --> if yes, send the data back to the requesting server. if not, query the back-end servers for the file, cache it locally, send the data to the requesting user.
+A request asks CDN for a static media --> CDN checks if the data is locally available --> if yes, send the data back to the requesting server. if not, query the back-end servers for the file, cache it locally, send the data to the requesting user.  
 **The basic idea of CDN: CDNs place Data Centers at strategic locations across the globe.**
 
 **6. **
