@@ -7,4 +7,4 @@
 6. [API Rate Limiter](api_rate_limiter.md)
 7. [Consistent Hashing for Data Partitioning and Data Replication](consistent_hashing.md)
 8. [More on Data Partitioning; Data Partitioning vs. Data Sharding](more_on_data_partitioning.md)
-9. [Caching and CDN](cache.md)
+9. [Caching vs. CDN](cache.md)
