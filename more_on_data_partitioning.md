@@ -27,4 +27,4 @@ Generally speaking, data partitioning is a technique to break a big database (DB
 - What if I need to join two tables which spreads across 2 different server (Before data partitioning, there is only 1 table in 1 server. After data partitioning, this data table is partitioned into 2 different servers)? Therefore, the problem is that **joins operation is not efficient(or feasible) now** because data has to be compiled from multiple servers.
   - How to fix this ? data denomalization.
 -  **Trying to enforce data integrity constraints, such as foreign key constraint, can be extremely difficult.**
-  - How to fix this ? Applications have to **run regular SQL jobs to clean up dangling references**. 
+    - How to fix this ? Applications have to **run regular SQL jobs to clean up dangling references**. 
