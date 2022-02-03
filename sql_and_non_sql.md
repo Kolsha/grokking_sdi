@@ -1,4 +1,4 @@
-**SQL vs. NoSQL**
+**1. SQL vs. NoSQL**
 
 |               |       SQL     |      NoSQL    |
 | ------------- | ------------- | ------------- 
@@ -7,7 +7,7 @@
 |   | challenging to horizontally scale(i.e. distribute data across multiple servers)  | can be horizontally scaled (How ? by adding more servers in NoSQL database **infrastructure** and distributing data across servers.) |
 |   | **ACID** compliant, thus better data reliability and safe guarantee of performing transactions.  | scarifice **ACID** for performance scalability, thus better scalability|
 
-**What's ACID ? Why is it important ?**
+**2. What's ACID ? Why is it important ?**
 - **Problem 1**: For a transaction which is composed of multiple steps, such as monetary transfer from bank account A to bank account B. If something goes wrong after the money is withdrawed from account A (such as power failures, errors or crashes), how to solve this problem ?
   - **Atomicity**. The transaction is treated as **1 unit**. It either succeeds completely, or fails completely.
 
@@ -20,11 +20,11 @@
 - **Problem 4**: What if power outage happens on the database system ?
   - **Durability**: data stores in **non-volatile memory**. 
 
-**When to use SQL database ?**
+**3. When to use SQL database ?**
 - for many e-commerce and financial applications, use ACID-compliant SQL database.
 - your business is not experiencing massive growth and you're only working with data that is consistent.
 
-**When to use No-SQL database ?**
+**4. When to use No-SQL database ?**
 - to store large volumes of data that often have little structure.
 - making the most of cloud computing and storage, _because cloud-based storage requires data to be spread across multiple servers to scale up_.
 - rapid development, because NoSQL
@@ -32,7 +32,7 @@
   - you can make _frequent_ updates to the data structure.
 
 
-**Choose among Redis, Dynamo, Cassandra, Memcached or MongoDB ?**  
+**5. Choose among Redis, Dynamo, Cassandra, Memcached or MongoDB ?**  
 - Focus on Caching ?:
     - **Memcached** is designed for caching. It keeps data in RAM. **It's great for caching small and static data**.
     - **Redis** is excellent for caching.
