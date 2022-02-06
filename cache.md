@@ -18,6 +18,7 @@ CDNs are a kind of cache.
 
 
 **4. When do we choose to use CDN ?**  
+CDN is a distributed network of proxy servers.  
 CDN can be used to store **static media**.
 
 
