@@ -3,6 +3,7 @@
 **1. Paper**  
 [MapReduce](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf).  
 **Focus on the 'Figure 1. Execution overview'** in this page.
+- When the reducer worker has read all intermediate data, it **sorts** it by intermediate keys so that **all occurrences of the same key are grouped together**.
 
 **2. What is Map Reduce ?**
 - Map
