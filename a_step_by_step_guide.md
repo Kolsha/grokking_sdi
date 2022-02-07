@@ -12,7 +12,7 @@
 Define what APIs are expected from the system, because this e**stablishes the contract expected from the system and make sure that we haven't gotten any requirements wrong**.
 
 ## 4. Defining data model
-Defining the data model clarify **how data will flow between different system components**.  
+Defining the data model clarify **how data will flow between different system components and later would guide towards data partitioning**.  
 **Different aspects** of data management are _storage, transportation, encryption_ , etc.  
 Candidate should **identify various system entities**. For tweet-like service, some entities are: User, Tweet, UserFollow, and FavoriteTweets.
 
