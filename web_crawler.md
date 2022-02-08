@@ -1,1 +1,42 @@
+## Web Crawler
 
+**1. What is web crawler ?**  
+Web crawler collects documents by **recursively** fetching links from **a set of starting pages**.
+
+**2. Uses of web crawler**  
+- search engine downloads/collects all the pages, in order to create an index on them to perform faster searches;
+- search for copyright infringements;
+- monitor sites to see when their structure or contents change;
+
+**3. Requirements and Goals of the System**
+- scalability
+- **extensibility**: service should be designed in **a modular way** with the expectation that new functionality will be added to it (such as there could be newer document types that need to be downloaded and processed in the future).
+
+**4. Some Design Considerations**
+- only fetch HTML pages ? Or fetch other types of media such as sound files, images, videos ?
+    - **we need different sets of parsing modules for different media type, one for HTML, another for images, or another for videos ...**
+- only consider HTTP protocols ? how about other protocols such as FTP links ?
+    - **It shouldn't be hard to extend the design to use FTP or other protocols**
+- how big will the URL database be?
+    - **If we crawl _1 billion websites_, let's assume _an upper bound of 15 billion different web pages_ that will be reached by our crawler.** 
+- How to deal with Robots Exclusion Standard ?
+    - **What is Robots Exclusion Standard ?**
+      - It is a standard used by websites to communicate with web crawlers (i.e. web robots).
+      - It specifies what areas of the website(i.e. page) crawlers are allowed to download.
+      - It also specifies which areas of the website(i.e. page) crawlers are not allowed to download/process/scan/crawl.
+    - Before web crawler attempts to crawl a website, it should first download the robots.txt file such as https://www.amazon.com/robots.txt .
+
+**5. Capacity Estimation and Constraints**  
+**Storage Estimation**
+- needs to crawl 15 billion pages within 4 weeks
+- average web page(HTML page) has size ~= 100KB
+- for every web page, **we are storing 500 bytes of metadata**, such as size, creationDate, ...
+- assume a 70% capacity model
+- **In total, we need (15 billion * (100KB + 0.5KB)) / 0.7 = 2250 TB = 2.25PB /petabytes.**
+- **needs to crawl 15 billion / (4 weeks * 7days * 24hours * 3600) = 6200 pages/s**
+
+**6. High level design**
+- **Prerequisite Leetcode**  
+Try to implement them in both BFS and DFS.
+    - [Web Crawler](https://leetcode.com/problems/web-crawler/)
+    - [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/)
