@@ -40,3 +40,12 @@ Web crawler collects documents by **recursively** fetching links from **a set of
 Try to implement them in both BFS and DFS.
     - [Web Crawler](https://leetcode.com/problems/web-crawler/)
     - [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/)
+- **BFS or DFS crawling**
+    - DFS is usually not a good choice because of its deep depth
+- **Path-ascending crawling**
+    -  What if there is no inbound link can be found in a website ? Path-ascending crawler would **ascend to every path** in the URL. For example, for http://foo.com/a/b/c. The path-ascending crawler crawls http://foo.com/a first, then http://foo.com/a/b, then http://foo.com/a/b/c.
+- **Difficulties in implementing an efficient web crawler**
+    - large volume of web pages
+    - rate of change on web pages
+
+
