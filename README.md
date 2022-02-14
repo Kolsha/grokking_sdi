@@ -15,3 +15,4 @@
 15. [Web Crawler](web_crawler.md)
 16. [Bloom Filter](bloom_filter.md)
 17. [CAP and PACELC theorem](cap_and_pacelc.md)
+18. [Heartbeat](heart_beat.md)
