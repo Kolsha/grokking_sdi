@@ -16,5 +16,5 @@ Let's say we have a large set of structured data(identified by record IDs) store
     - **time complexity = O(k) which is constant time**
 - Decide whether an element may be in a set ?
     -  for this element, feed it to these **k** hash functions. Therefore, we will get **k** hash values.
-    -  for every **value** in the output **k** hash values, if all of **bitarray[value] = 0**, this element must not be in this set. Else, it may be in this set.
+    -  for every **value** in the output **k** hash values, if there is any value which satisfies **bitarray[value] = 0**, this element must not be in this set. Else, it may be in this set.
     -  **time complexity: O(k) which is constant time**.
