@@ -48,4 +48,15 @@ Try to implement them in both BFS and DFS.
     - large volume of web pages
     - rate of change on web pages
 
-
+- **What is URL frontier ? Why do we need URL frontier ?**  
+    - **Problems (here are why we need URL frontier)**:
+        - **politeness**: a web crawler should avoid sending too many requests to the same hosting server within a short period.
+        - **prioritize URLs to be downloaded**: a web page from a discussion forum about Apple product vs. a web page on the Apple home page
+    - **URL frontier does the following:**
+        - store URLs to be downloaded; and
+        - prioritize which URLs should be crawled/downloaded first; and
+        - ensure politeness
+            - **How ?**
+                - maintain a mapping from _website hostname_ to _queue which only contains URLs from this website hostname._
+                - maintain a mapping from _worker thread_ to a _queue_ which contains URLs (from the same website hostname).
+                - For every worker thread, **add a delay between 2 consecutive download tasks.**
