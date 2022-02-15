@@ -24,3 +24,25 @@ How can a distributed system **model itself to get the maximum benefits out of d
 
 ----
 ## PACELC Theorem
+**1. Some concepts to know**
+- **strong consistency**: read operation returns the most updated data item.
+- **weak consistency**: subsequent read operation does not return the most updated data item.
+    - **eventual consistency**: this is _a specific form of weak consistency_. Given enough time, all updates will be propagated, and all data replicas are the same/consistent.
+
+**2. BASE database(for NoSQL database)**
+- **B**asically **A**vailable;
+- **S**oft-state: the state of data could change _without application interaction_ because of eventual consistency.
+- **E**ventually consistent.
+
+Therefore, ACID database(SQL database) chooses **C**. BASE database(NoSQL database) choose **A**.
+
+**3. Background/Problem**  
+**Question:** When there is partition(P), the system can do trade-off between availability (A) and consistency (C). However, if there is no partition (P), what trade-off can you do for your system ?  
+**Answer:** You can do trade-off between **latency (L) and consistency (C)**.
+
+**4. PACELC**
+- **E** stands for **E**lse.
+- Examples
+    - Dynamo and Cassandra: PA/EL
+    - BigTable and HBase: P**C**/E**C**
+    - MongoDB: PA/EC
