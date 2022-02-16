@@ -40,10 +40,13 @@ Web crawler collects documents by **recursively** fetching links from **a set of
 Try to implement them in both BFS and DFS.
     - [Web Crawler](https://leetcode.com/problems/web-crawler/)
     - [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/)
+    
+**7. Detailed Component design**
 - **BFS or DFS crawling**
     - DFS is usually not a good choice because of its deep depth
 - **Path-ascending crawling**
     -  What if there is no inbound link can be found in a website ? Path-ascending crawler would **ascend to every path** in the URL. For example, for http://foo.com/a/b/c. The path-ascending crawler crawls http://foo.com/a first, then http://foo.com/a/b, then http://foo.com/a/b/c.
+
 - **Difficulties in implementing an efficient web crawler**
     - large volume of web pages
     - rate of change on web pages
@@ -60,3 +63,18 @@ Try to implement them in both BFS and DFS.
                 - maintain a mapping from _website hostname_ to _queue which only contains URLs from this website hostname._
                 - maintain a mapping from _worker thread_ to a _queue_ which contains URLs (from the same website hostname).
                 - For every worker thread, **add a delay between 2 consecutive download tasks.**
+        - **Problem: URL frontier cannot store millions of URLs**
+            - store all URLs on disk ? No. reading will be slow. 
+            - store all URLs on memory ? No. not scalable.
+            - **hybrid**: The majority of URLs are stored on disk. And we maintain buffers in memory for enqueue/dequeue operations.
+                - for a new extracted URL, enqueue this URL to a enqueue_buffer (which is implemented a queue); When this enqueue_buffer is full, it dumps all its URLs to disk.
+                - to retrieve 1 URL from URL frontier, dequeue a URL from a dequeue_buffer (which is implemented as a queue). This dequeue_buffer periodically read URLs from disk.
+
+- **Downloader/Fetcher**
+    - Implement it in a modular way for extensibility, so to support HTTP protocol, FTP protocol and other protocols.
+    - obey Robot Exclusion Standard.
+    - **The bottleneck for a webcrawler: DNS Resolving**
+        - DNS reponse time ranges from 10ms to 200ms.
+        - **How to solve this problem ?** Maintain a DNS cache which keeps the domain name to IP address mapping.
+
+
