@@ -97,3 +97,13 @@ Try to implement them in both BFS and DFS.
     - How to deduplicate ? The idea is the same as **Document Dedupe test**.
     - **One more thing to highlight**: 
         - we can keep an in-memory cache of **popular URLs** on each host **shared by all threads**, **in order to lead to a high in-memory hit rate**.
+
+**8. Fault Tolerance**
+- What if the web crawler server crashes ?
+    - In this case, **consistent hashing** helps, because it can shift the load(i.e. URL stored on the disk, URL checksum set, document store, and document checksum set) of the crashing server to other servers. 
+
+**9. Data Partitioning**
+
+
+**11. High-level design**
+![web_crawler](https://user-images.githubusercontent.com/26174882/155469610-a2aecd5d-bc59-482d-83d0-0780f3ff1564.png)
