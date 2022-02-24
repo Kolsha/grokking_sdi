@@ -96,4 +96,4 @@ Try to implement them in both BFS and DFS.
 - **URL Dedupe test**
     - How to deduplicate ? The idea is the same as **Document Dedupe test**.
     - **One more thing to highlight**: 
-        - we can keep an in-memory cache of **popular URLs ** on each host **shared by all threads**, **in order to lead to a high in-memory hit rate**.
+        - we can keep an in-memory cache of **popular URLs** on each host **shared by all threads**, **in order to lead to a high in-memory hit rate**.
