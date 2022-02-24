@@ -102,8 +102,15 @@ Try to implement them in both BFS and DFS.
 - What if the web crawler server crashes ?
     - In this case, **consistent hashing** helps, because it can shift the load(i.e. URL stored on the disk, URL checksum set, document store, and document checksum set) of the crashing server to other servers. 
 
-**9. Data Partitioning**
+**9. Perform Checkpointing**
+- What is performing checkpointing ?
+    - each host performs checkpointing periodically by **dumping a snapshot of all the data it is holding onto a remote server**. 
+- What is the benefit of performing checkpointing ?
+    - if a server performs checkpointing, when this server dies, another server can replace it by taking its data from the **last snapshot**. 
 
+**10. Crawler Trap**
+- What is crawler trap ?
+    - it is a URL or set of URLs that cause a crawler to crawl indefinitely. 
 
 **11. High-level design**
 ![web_crawler](https://user-images.githubusercontent.com/26174882/155469610-a2aecd5d-bc59-482d-83d0-0780f3ff1564.png)
