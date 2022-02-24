@@ -77,4 +77,23 @@ Try to implement them in both BFS and DFS.
         - DNS reponse time ranges from 10ms to 200ms.
         - **How to solve this problem ?** Maintain a DNS cache which keeps the domain name to IP address mapping.
 
+- **Document input stream (DIS)**
+    - What is DIS ?
+        - **cache** the entire contents of the document read from the internet  
+    - Why need DIS ?
+        - to enable same document to be processed by multiple processing modules (i.e. **provide method to re-read the document**).
 
+- **Document Dedupe test**
+    - How to deduplicate ?
+        - store chechsum of every processed document into a database;
+        - for every new document, compute its checksum, and see if this checksum is contained in the database.
+        - Where to store this database ?
+            - depends on the storage we need. If it is big, such as 1TB, you can store LRU cache in memory and store other checksums in a persistent storage (you can call it back storage or disk).
+
+- **URL filters**
+    - it is used to block websites so that our crawler can ignore them.
+
+- **URL Dedupe test**
+    - How to deduplicate ? The idea is the same as **Document Dedupe test**.
+    - **One more thing to highlight**: 
+        - we can keep an in-memory cache of **popular URLs ** on each host **shared by all threads**, **in order to lead to a high in-memory hit rate**.
