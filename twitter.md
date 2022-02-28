@@ -48,3 +48,44 @@ string tweet(account_id, tweet_data, tweet_location, user_location, media_ids)
 **Note:**  
 1. media_ids is the id of media photo, video which needs to be uploaded separately;
 2. **return value**: the URL to access the tweet if success. An error is returned if failure.
+
+
+**4. High-level System Design**  
+- This system is a **read-heavy** system.
+- We need a load balancer to distribute requests, therefore, we need multiple application servers.
+- We need a database which can support a lot of reads.
+- We need some file storage to store videos and photos.
+
+
+**5. Design Data Schema**  
+Tweet Table
+|   Primary Key |      tweet_id: int    |
+| ------------- |  ------------- |
+|   | content: varchar(140)|
+|   | timestamp (i.e. createdTime): datetime|
+|   | tweet_location: varchar(140)|
+|   | user_location: varchar(140)|
+|   | # of likes: int|
+
+User Table
+|   Primary Key |      user_id: int    |
+| ------------- |  ------------- |
+|   | name: varchar(140)|
+|   | last_login_time: datetime|
+|   | email: varchar(140)|
+|   | account_creation_time: datetime|
+|   | account_creation_time: datetime|
+
+User Follows
+|   Primary Key |      user_id: int    |
+| ------------- |  ------------- |
+|   | user_id_1: int|
+|   | user_id_2: int|
+|   | ...|
+
+User Favorties
+|   Primary Key |      user_id: int    |
+| ------------- |  ------------- |
+|   | tweet_id_1: int|
+|   | tweet_id_2: int|
+|   | ...|
