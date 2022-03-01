@@ -89,3 +89,22 @@ User Favorties
 |   | tweet_id_1: int|
 |   | tweet_id_2: int|
 |   | ...|
+
+We can store the above schema in a distributed key-value store to enjoy the benefits offered by NoSQL.
+
+**6. Data Sharding**
+- **Why do we need data sharding ?**
+    - Since we have a huge number of new tweets per day and our read load is extremely high too, we need to distribute our data onto multiple machines such that we can read/write it efficiently.
+
+- **How to shard our data ?**
+    - 1. sharding based on **user id**, using a hash function that will map the user to a database server.
+        - **problem**: hot user; maintain a uniform distribution of data is difficult because some users can end up storing a lot of tweets and follows than other users.
+    - 2. sharding based on **tweet id**.
+        - how to **search tweets(such as timeline generation)** in this case ?
+            - _app server_ finds all users followed by this user;
+            - _app server_ sends request to all database in order to find tweets published by these users;
+            - every database finds tweets published by every user, and _sorts them by recency_ and returns top tweets;
+            - _app server_ merges all results together, _sort again_, and return top results to user.
+        - **problem**:         
+
+
