@@ -17,3 +17,6 @@
 17. [CAP and PACELC theorem](cap_and_pacelc.md)
 18. [Heartbeat](heart_beat.md)
 19. [Twitter](twitter.md)
+20. [Indexes](indexes.md)
+21. [Instagram](instagram.md)
+22. [Youtube](youtube.md)
