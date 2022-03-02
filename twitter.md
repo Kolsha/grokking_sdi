@@ -97,21 +97,21 @@ We can store the above schema in a distributed key-value store to enjoy the bene
     - Since we have a huge number of new tweets per day and our read load is extremely high too, we need to distribute our data onto multiple machines such that we can read/write it efficiently.
 
 - **How to shard our data ?**
-    - 1. sharding based on **user id**, using a hash function that will map the user to a database server.
+    - sharding based on **user id**, using a hash function that will map the user to a database server.
         - **problem**: hot user; maintain a uniform distribution of data is difficult because some users can end up storing a lot of tweets and follows than other users.
-    - 2. sharding based on **tweet id**.
+    - sharding based on **tweet id**.
         - how to **search tweets(such as timeline generation)** in this case ?
             - _app server_ finds all users followed by this user;
             - _app server_ sends request to all database in order to find tweets published by these users;
             - every database finds tweets published by every user, and _sorts them by recency_ and returns top tweets (ranked by recency);
             - _app server_ merges all results together, _sort again_, and return top results to user.
         - **problem**: high latency
-    - 3. sharding based on **tweet creation time**
+    - sharding based on **tweet creation time**
         - **advantage**: you can fetch all top tweets (ranked by recency) quickly
         - **problem**: traffic load is not distributed.
             - while reading, the server with latest data will have a very high load
             - while writing, all new tweets go to one server, and the remaining servers will be sitting idle. 
-    - 4. sharding **by tweet id AND tweet creation time**
+    - sharding **by tweet id AND tweet creation time**
         - **How ?**: 
 
 
