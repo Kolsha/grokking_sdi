@@ -112,6 +112,14 @@ We can store the above schema in a distributed key-value store to enjoy the bene
             - while reading, the server with latest data will have a very high load
             - while writing, all new tweets go to one server, and the remaining servers will be sitting idle. 
     - sharding **by tweet id AND tweet creation time**
-        - **How ?**: 
+        - **How ?**: use Tweet ID to reflect creation time.
+        - **How to generate timeline in this case ?**
+            - _app server_ finds all users followed by this user;
+            - _app server_ sends request to all database in order to find tweet ids published by these users;
+            - every database no need to read creation time of every tweet (**therefore reducing latency**). Instead, database can simply rank tweets by tweet id, because tweet id(i.e. the primary key) has epoch time included in ti.
+            - _app server_ merges all results together, _sort again_, and return top results to user.
+        - **advantage**:
+            - one advantage is reducing latency, as you can see in above example
+            - another one advantage is no need to write creationTime to database for every new tweet, therefore reducing write latency. 
 
 
