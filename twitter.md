@@ -56,6 +56,8 @@ string tweet(account_id, tweet_data, tweet_location, user_location, media_ids)
 - We need a database which can support a lot of reads.
 - We need some file storage to store videos and photos.
 
+![twitter_high_level](https://user-images.githubusercontent.com/26174882/156422106-9f3b70ab-8bea-461d-88c3-ffc73a4ff62e.png)
+
 
 **5. Design Data Schema**  
 Tweet Table
