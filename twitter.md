@@ -114,7 +114,9 @@ We can store the above schema in a distributed key-value store to enjoy the bene
             - while reading, the server with latest data will have a very high load
             - while writing, all new tweets go to one server, and the remaining servers will be sitting idle. 
     - sharding **by tweet id AND tweet creation time**
-        - **How ?**: use Tweet ID to reflect creation time.
+        - **How ?**: use Tweet ID to reflect creation time. Let first 31 bits to store timestamp (unit is second). Let the last 17 bits store incremented sequence.
+            - Why 31 bits for timestamp ? 2 ^ 31 > 1.6 billion seconds (i.e. 86400 s/day * 365 days/year * 50 years = 1.6 billion).
+            - Why 17 bits for incremented sequence ? So every second, we can generate 2 ^ 17 new tweets.
         - **How to generate timeline in this case ?**
             - _app server_ finds all users followed by this user;
             - _app server_ sends request to all database in order to find tweet ids published by these users;
@@ -124,4 +126,12 @@ We can store the above schema in a distributed key-value store to enjoy the bene
             - one advantage is reducing latency, as you can see in above example
             - another one advantage is no need to write creationTime to database for every new tweet, therefore reducing write latency. 
 
-
+**7. Cache**
+- **Why we need cache ?**
+    - To store hot users' tweets.
+    - Use LRU policy as cache replacement policy.
+- **How we use cache ?**
+    - before application servers hit database, it checks if the cache has desired tweets.
+- **Cache What ?**
+    - the latest tweets from all the users from the last 3 days.
+    - our cache would be like a hash table: key is the userID, and value is a **doubly linked list** (every node of the linked list is a tweet). We put the new tweets at the **head** of the linked list.
