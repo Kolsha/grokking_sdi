@@ -42,5 +42,5 @@ get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional
   - get results older than the specified ID (i.e. the max_id)
 - Why need **exclude_replies** ?
   - it's used to exclude replies (i.e. comments) from appearing in the returned new feed.
-**- What's the result value ?**
+- **What's the result value ?**
   - a JSON object containing a list of feed items.
