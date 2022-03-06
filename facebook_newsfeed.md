@@ -28,5 +28,19 @@ It is a compilation of your and your friends' life story (from photo, videos, lo
 
 **4. System APIs Design**
 ```
-generate_timeline(api_dev_key, user_id, )
+get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional_count, optional_exclude_replies)
 ```
+- Why need **api_dev_key** ?
+  - The API developer key of a registered account. It can be used **to throttle users based on their allocated quota**.
+- Why need **user_id** ?
+  - generate the news feed for the user with this user_id.
+- Why need **since_id** ?
+  - get results more recent than the specified ID (i.e. since_id)
+- Why need **count** ?
+  - count = max num of feed items
+- Why need **max_id** ?
+  - get results older than the specified ID (i.e. the max_id)
+- Why need **exclude_replies** ?
+  - it's used to exclude replies (i.e. comments) from appearing in the returned new feed.
+**- What's the result value ?**
+  - a JSON object containing a list of feed items.
