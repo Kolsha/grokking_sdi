@@ -66,3 +66,27 @@ get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional
 ![facebook_newsfeed_highlevel](https://user-images.githubusercontent.com/26174882/157177502-26f7569b-995f-45c8-ac5f-55eeaa8ee34f.jpeg)
 
 
+**7. Detailed Component Design**
+- How the Newsfeed Generation Service fetchs the most recent posts from all users and Janes follows ?
+
+```
+(
+# find posts from friend
+SELECT FeedItemID FROM FeedItem WHERE UserId in (
+  SELECT EntityOrFriendID FROM UserFollow WHERE UserId = JANE_ID and type = 0(user)
+)
+
+UNION
+
+# find posts from pages/groups
+SELECT FeedItemID FROM FeedItem WHERE UserId in (
+  SELECT EntityOrFriendID FROM UserFollow WHERE UserId = JANE_ID and type = 1(entity)
+)
+
+# rank posts by creation date
+ORDER BY CreationDate DESC
+
+# return top 100 posts
+LIMIT 100
+)
+```
