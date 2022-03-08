@@ -92,4 +92,8 @@ LIMIT 100
 ```
   - **Problem**:
     - **slow** if Jane follows a lot of friends/pages/groups, because ranking on many many posts
+    - For live updates, the Newsfeed Generation Service needs to run every 5 minutes for every user. This results in high backlogs in this Newsfeed Generation Service.
+    - For live updates, the Feed Notification Service needs to notify about newer posts to users every 5 minutes. This leads to very heavy loads.
+
+  - **How to fix the problem above ?**
     - 
