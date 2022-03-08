@@ -96,4 +96,13 @@ LIMIT 100
     - For live updates, the Feed Notification Service needs to notify about newer posts to users every 5 minutes. This leads to very heavy loads.
 
   - **How to fix the problem above ?**
-    - 
+    - **Offline generation for newsfeed (i.e. pre-generation for newsfeed)**
+      - **continuously** generate users's newsfeed and store them **in memory**.
+      - therefore, using this scheme, user's newfeed is not compiled on load, but rather on a regular basis
+    - **Pre-generate newfeed for all users ? That would consume too much memory. How to fix it ?**
+      - remove user's newsfeed if this user has not accessed their newsfeed for a long time. How to know if a user does not log in for a long time ? **LRU cache**. 
+      - Or figure out a login pattern of users: at what time of the day a user is active; which days of the week does a user access their newsfeed.
+    - **How many feed items to store for every user ?**
+      - if 1 page of a user's feed has 20 posts, and most users do not browse more than 10 pages of their newsfeed, we can decide to store only 200 posts per user.
+      - **what if a user wants to see more posts** ? we can always query backend servers.
+
