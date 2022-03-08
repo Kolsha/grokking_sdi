@@ -47,3 +47,22 @@ get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional
 
 **5. Database Design(i.e. Design Data Schema)**
 ![facebook_newsfeed_database_schema](https://user-images.githubusercontent.com/26174882/157167064-4bbe14a6-0664-4025-94d5-ffe7dfa10c9b.jpeg)
+
+**6. High Level System Design**
+- **Feed Generation**
+  - retrieve IDs of all users and entities that Jane follows;
+  - retrieve the **latest, most popular and relevant posts** for those IDs.
+  - rank those posts **based on the relevance to Jane**.
+  - **store these posts in the cache and return the top posts(say 20) to be rendered on Jane's feed**.
+  - when Jean reaches the end of her current feed, she can fetch the next 20 posts from **cache/server**.
+  - **Note**:
+    - Problem: you cannot always fetch posts from an non-empty cache, because the new incoming posts from people/entities that Jane follows, are not stored in cache.
+    - How to fix this problem ? 
+      - periodically (every 5 minutes) perform above steps. 
+      - Jane can be **notified** in her feed that **she can fetch newer items**.
+
+- **Feed Publishing**
+  - user updates post or publish new posts
+![facebook_newsfeed_highlevel](https://user-images.githubusercontent.com/26174882/157177502-26f7569b-995f-45c8-ac5f-55eeaa8ee34f.jpeg)
+
+
