@@ -99,10 +99,48 @@ LIMIT 100
     - **Offline generation for newsfeed (i.e. pre-generation for newsfeed)**
       - **continuously** generate users's newsfeed and store them **in memory**.
       - therefore, using this scheme, user's newfeed is not compiled on load, but rather on a regular basis
+
     - **Pre-generate newfeed for all users ? That would consume too much memory. How to fix it ?**
       - remove user's newsfeed if this user has not accessed their newsfeed for a long time. How to know if a user does not log in for a long time ? **LRU cache**. 
       - Or figure out a login pattern of users: at what time of the day a user is active; which days of the week does a user access their newsfeed.
     - **How many feed items to store for every user ?**
       - if 1 page of a user's feed has 20 posts, and most users do not browse more than 10 pages of their newsfeed, we can decide to store only 200 posts per user.
       - **what if a user wants to see more posts** ? we can always query backend servers.
+    - for every user, keep a struct object for him/her:
+```
+struct {
+  LinkedHashMap<FeedItemID, FeedItem> feedItems;
+  DateTime lastGenerated;
+};
+```
 
+- **2 ways to publish a new post to all the followers: fanout-on-write(push approach) vs. fanout-on-load(pull approach)**
+  - **fan-out-on-load (pull model)**
+    - client issue a pull request.
+    - **problem**:
+      - clients need to issue a pull request so that they can see new data;
+      - if there is no new data and client issues a pull request, this client is wasting resource
+  - **fan-out-on-write (push model)**  
+    - immediately push new feed to this feed publisher's followers.
+    - users have to maintain a Long Poll request with the server in order to receive the updates.
+    - **problem**: a user(celebrity) has millions of followers and this user sends a new post. The server has to push updates to millions of followers.
+  - **hybrid**
+    - stop pushing posts from celebrity users.
+    - only push posts for those users who have a few hundred (or thousand) followers.
+    - for celebrity users, the followers has to issue the pull request.
+    - Or, once a user publishes a post, we limit the fanout to only her **online** friends.
+  - **Should we always notify users if there are new posts available for their newsfeed ?**
+    - may not for mobile devices, because data usage is relatively expensive and it can consume unnecessary bandwidth. Therefore, for mobile device, let users "Pull to Refresh" to get new posts.
+
+
+**8. How to Rank Posts ?**
+- by creation time; Or
+- by importance
+  - **How ?**:
+    - select key "signals" that make post important and then find out how to combine them to calculate a final ranking score. 
+    - signals include:
+      - num of likes;
+      - comments;
+      - shares;
+      - time of the update;
+      - whether the post has images/videos 
