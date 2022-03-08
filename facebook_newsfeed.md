@@ -67,7 +67,7 @@ get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional
 
 
 **7. Detailed Component Design**
-- How the Newsfeed Generation Service fetchs the most recent posts from all users and Janes follows ?
+- **How the Newsfeed Generation Service fetchs the most recent posts from all users and Janes follows ?**
 
 ```
 (
@@ -90,3 +90,6 @@ ORDER BY CreationDate DESC
 LIMIT 100
 )
 ```
+  - **Problem**:
+    - **slow** if Jane follows a lot of friends/pages/groups, because ranking on many many posts
+    - 
