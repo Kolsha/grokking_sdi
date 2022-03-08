@@ -44,3 +44,6 @@ get_user_feed(api_dev_key, user_id, optional_since_id, optional_max_id, optional
   - it's used to exclude replies (i.e. comments) from appearing in the returned new feed.
 - **What's the result value ?**
   - a JSON object containing a list of feed items.
+
+**5. Database Design(i.e. Design Data Schema)**
+![facebook_newsfeed_database_schema](https://user-images.githubusercontent.com/26174882/157167064-4bbe14a6-0664-4025-94d5-ffe7dfa10c9b.jpeg)
