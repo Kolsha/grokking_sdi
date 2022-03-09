@@ -138,7 +138,24 @@ We can store the above schema in a distributed key-value store to enjoy the bene
 
 ![twitter_detail_design](https://user-images.githubusercontent.com/26174882/156713589-4b6eb6f5-4893-4d2c-ae67-06dbbfd52b41.jpg)
 
-**8. Replication and Fault Tolerance**
+**8. Replication and Fault Tolerance**  
 since our system is **read-heavy**, we use master-slave model for data replication.
+
+**9. Load Balancing**  
+- we can add load balancing layer in 3 places:
+    - between clients and application servers
+    - between applications servers and database replication servers (refer to section 8 for data replication)
+    - between aggregration servers and cache server
+- we can use Round Robin approach for load balancing algorithm
+    - benefits of Round Robin: if a server is dead, LB will take it out of its rotation
+    - disadvantages of Round Robin: it won't take the server load into consideration
+
+**10. Monitoring**  
+- need to collect metrics/counters:
+    - new tweets per day/second
+    - timeline delivery stats (i.e. how many tweets our service is delivering per day/second)
+    - latency (i.e. latency that is seen by user to refresh timeline)
+- Why we need these metrics?
+    - by monitoring these counters, **we realize if we need more replication, load balancing, and caching**.
 
 
