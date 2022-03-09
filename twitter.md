@@ -137,3 +137,8 @@ We can store the above schema in a distributed key-value store to enjoy the bene
     - our cache would be like a hash table: key is the userID, and value is a **doubly linked list** (every node of the linked list is a tweet). We put the new tweets at the **head** of the linked list.
 
 ![twitter_detail_design](https://user-images.githubusercontent.com/26174882/156713589-4b6eb6f5-4893-4d2c-ae67-06dbbfd52b41.jpg)
+
+**8. Replication and Fault Tolerance**
+since our system is **read-heavy**, we use master-slave model for data replication.
+
+
