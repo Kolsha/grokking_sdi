@@ -158,4 +158,15 @@ since our system is **read-heavy**, we use master-slave model for data replicati
 - Why we need these metrics?
     - by monitoring these counters, **we realize if we need more replication, load balancing, and caching**.
 
+**11. Extended Requirements**
+- Trending Topics
+    - How to gather Trending Topics ?
+        - cache **most frequently occuring hashtags or tweet search queries** in the last N seconds. And keep updating Trending Topics every M seconds.  
+        - or rank tweets by # of likes and retweets
+        - or give more weight on tweet if this tweet is shown to more people (i.e. more people sees/visits this tweet)
 
+- Who to follow ?(i.e. Suggestions)
+    - if user A follows user B, we can suggest friends of user B to user A.
+    - find famous people for user A to follow.
+    - use ML to find users who share the common interest with user A, then suggests these users to user A;
+    - use ML to find users who follow common followers as user A, then suggests these users to user A.
