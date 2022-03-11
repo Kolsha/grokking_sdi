@@ -31,7 +31,7 @@ returns:
   - 120GB per day * 365 days per year * 5 years = 219TB to store tweets for the next 5 years.
   - If **we never want to be more than 80% full at any time**, we need 219TB / 0.8 = 270TB of total storage. 
   - If we want to **keep an extra copy of all tweets for fault tolerance** (i.e. data replication), we need 270TB * 2 = 540TB of total storage.
-  - Therefore, we need 540TB / 4TB per server = 135 servers to hold all the tweets.
+  - Therefore, we need 540TB / 4TB (**assume a modern server can store up to 4TB of data**) = 135 servers to hold all the tweets.
   - We can **partition our data based on TweetID**.
 
 - **Index**
@@ -47,3 +47,8 @@ returns:
     - let's assume that on average we have 15 words in each tweet (40 words in each tweet - prepositions and other small words like 'the', 'an', 'and' etc)
     - therefore, each tweet id will be stored 15 times.
     - therefore, to store the index (i.e. hash table), the storage is 1500 GB * 15 + 2.5MB ~ = 22.5TB
+    - Assume a high-end server has 144 GB of memory, **we need 22.5TB / 144GB ~=156 servers to hold our index**
+
+  - **How to shard the index ?**
+    - 
+
