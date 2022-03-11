@@ -26,6 +26,10 @@ returns:
 - a **JSON** object containing information about a list of tweets matching the search query(i.e. the search terms).
 - each result entry can have the user id & user name, tweet text, tweet id, creation time, num of likes, etc.
 
+**5. High-level Design**
+
+![WechatIMG62](https://user-images.githubusercontent.com/26174882/157935756-0faf3e9c-d9b1-406a-b66e-5a6047fae15f.jpeg)
+
 **6.Detailed Component Design**
 - **Data Partition/Sharding**
   - 120GB per day * 365 days per year * 5 years = 219TB to store tweets for the next 5 years.
@@ -50,5 +54,5 @@ returns:
     - Assume a high-end server has 144 GB of memory, **we need 22.5TB / 144GB ~=156 servers to hold our index**
 
   - **How to shard the index ?**
-    - 
+    - **Index-Builder Server**: to build a hash table(mapping) to _map the index server number to a hash set which contains all tweet ids being kept at that index server_.
 
