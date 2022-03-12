@@ -54,5 +54,11 @@ returns:
     - Assume a high-end server has 144 GB of memory, **we need 22.5TB / 144GB ~=156 servers to hold our index**
 
   - **How to shard the index ?**
-    - **Index-Builder Server**: to build a hash table(mapping) to _map the index server number to a hash set which contains all tweet ids being kept at that index server_.
+    - Step 1 Storing: create index for every server 
+      - Step 1: pass tweet id to hash function to find the server in which this tweet is stored;
+      - Step 2: for tweet id i, we find a server i. Then in server i, we create a index which maps from word (words of tweets on that tweet) to tweet ids. 
+    - Step 2 Querying
+      - Step 1: for query for word_i, we go to all servers
+      - Step 2: find tweet ids which contains word_i on every servers
+      - Step 3: aggregate results together and return it to users
 
