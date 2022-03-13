@@ -58,7 +58,9 @@ returns:
       - Step 1: pass tweet id to hash function to find the server in which this tweet is stored;
       - Step 2: for tweet id i, we find a server i. Then in server i, we create a index which maps from word (words of tweets on that tweet) to tweet ids. 
     - Step 2 **Querying**
-      - Step 1: for query for word_i, we go to all servers
-      - Step 2: find tweet ids which contains word_i on every servers
+      - Step 1: for query for word_i, we go to all index servers
+      - Step 2: find tweet ids which contains word_i on every server; (for every tweet id, we also know the server id in which this tweet is stored. We can add this info when we build up the index server)
       - Step 3: aggregate results together and return it to users
+
+![WechatIMG64](https://user-images.githubusercontent.com/26174882/158047180-a327844b-9c54-4e27-94f8-2fa57c787c53.jpeg)
 
