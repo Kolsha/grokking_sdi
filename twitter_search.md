@@ -64,3 +64,6 @@ returns:
 
 ![WechatIMG64](https://user-images.githubusercontent.com/26174882/158047180-a327844b-9c54-4e27-94f8-2fa57c787c53.jpeg)
 
+**7. Fault Tolerance**
+- Problem: what if a index server dies ? How to recover it ?
+- Solution: **Index-Builder Server** builds a hash table where the key is the index server number and the value is a hashset containing all the tweet ids being kept at that index server.
