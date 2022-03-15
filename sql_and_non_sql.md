@@ -30,6 +30,8 @@
 - rapid development, because NoSQL
   - doesn't need to be prepared ahead of time; and
   - you can make _frequent_ updates to the data structure.
+- to offer reliability because NoSQL stores always maintain a certain number of replicas
+  - in such data stores, deletes don't get applied instantly; data is retained for certain days (to support undeleting) before getting removed from the system permanently.  
 
 
 **5. Choose among Redis, Dynamo, Cassandra, Memcached or MongoDB ?**  
