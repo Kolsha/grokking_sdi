@@ -30,3 +30,18 @@
 - **400GB * 365 * 10 = 1460 TB for 10 years**
 
 **5. High Level System Design**
+- use **object storage servers** to store photos
+  - object storage server manages data as **objects** (not file hierarchy, not block storage which manages data as blocks within sectors and tracks)
+  - one of the limitations with object storage is that it is not intended for transactional data (i.e. dynamic data. The data that is periodically updated)
+  - S3 is an object storage servers.
+- user **database servers** to store metadata information about photos.
+
+![WechatIMG65](https://user-images.githubusercontent.com/26174882/158434384-5761895f-e206-4891-a05e-6352f9091242.jpeg)
+
+**6. Database Schema**
+
+![WechatIMG66](https://user-images.githubusercontent.com/26174882/158434415-9ff5a53b-bffe-4afb-9700-5437aaabdb3d.jpeg)
+
+**7. Data Size Estimation**
+
+
