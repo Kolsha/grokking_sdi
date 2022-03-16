@@ -35,7 +35,9 @@
   - one of the limitations with object storage is that it is not intended for transactional data (i.e. dynamic data. The data that is periodically updated)
   - S3 is an object storage servers.
 - user **database servers** to store metadata information about photos.
-
+- **We should keep in mind that web servers have a _connection limit_ before designing the system**
+  - therefore, we can split reads and writes into separate services, so that uploads don't hog the system.
+ 
 ![WechatIMG65](https://user-images.githubusercontent.com/26174882/158434384-5761895f-e206-4891-a05e-6352f9091242.jpeg)
 
 **6. Database Schema**
@@ -43,5 +45,15 @@
 ![WechatIMG66](https://user-images.githubusercontent.com/26174882/158434415-9ff5a53b-bffe-4afb-9700-5437aaabdb3d.jpeg)
 
 **7. Data Size Estimation**
+- Estimate User Table Size
+- Estimate Photo Table Size
+- Estimate UserFollow Table Size
+  - each row in the UserFollow Table will consist of 8 bytes. Why ? Because each row has 2 User IDs(the follower ID and the followee ID). Each user id is 4 bytes.
 
+**8. Reliability and Redundancy**
+- multiple replicas of services (i.e. upload image services and download image services)
+- multiple replicas of image storage
+- multiple replicas of image metadata
+
+**9. Data Sharding**
 
